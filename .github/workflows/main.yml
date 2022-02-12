@@ -27,7 +27,8 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: cd /var/www
-        run: sudo rm -fr html
-        run: gh repo clone rioda-org/idena-community
-        run: mv idena-community html
+        run: |
+         cd /var/www
+         sudo rm -fr html
+         gh repo clone rioda-org/idena-community
+         mv idena-community html
