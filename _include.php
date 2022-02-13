@@ -2,7 +2,7 @@
 session_start();
 require __DIR__ .'_config.php';
 
-$conn=mysqli_connect("localhost",$dbuser,$dbpass,$db);
+$conn=mysqli_connect($host,$dbuser,$dbpass,$db);
 if (mysqli_connect_errno())  { echo "Failed to connect to MySQL: ".mysqli_connect_error(); }
 mysqli_set_charset($conn,"utf8");
 
