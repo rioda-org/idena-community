@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/_config.php';
+require_once __DIR__ . '/_include.php';
 require_once __DIR__ . '/_head.php';
 ?>
 <body>

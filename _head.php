@@ -59,8 +59,8 @@ data: {theme:theme}
 });
 }
 
-//start mode
-<?php echo "var mode='{$theme}';";?>
+//start theme mode
+<?php echo "var mode='{$theme}';"; ?>
 
 function dark(){
 $("body").removeClass("bg-light");
