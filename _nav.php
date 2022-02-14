@@ -43,7 +43,7 @@ echo <<<EOT
 EOT;
 }
 else
-echo "<li class='nav-item'><a href='/auth/v1/' class='nav-link' title='You need Idena account to sign in'>Sign in with Idena</a></li>";
+echo "<li class='nav-item'><a href='auth/v1/' class='nav-link' title='You need Idena account to sign in'>Sign in with Idena</a></li>";
  ?>
 </ul>
 
