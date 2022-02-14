@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json');
-require_once __DIR__ . '/../../_config.php';
+require_once __DIR__ . '/../../_include.php';
 
 $error=0;
 
