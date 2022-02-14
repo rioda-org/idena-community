@@ -19,7 +19,7 @@ jobs:
         KEY: ${{ secrets.SSHKEY }}
       with:
         source: "."
-        target: "/var/www/html"
+        target: "/var/www/community.idena.site"
 
     - name: Executing remote command
       uses: appleboy/ssh-action@master
