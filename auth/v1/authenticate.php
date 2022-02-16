@@ -1,5 +1,4 @@
 <?php
-session_start();
 header('Content-Type: application/json');
 require __DIR__ . '/../../vendor/autoload.php';
 require_once __DIR__ . '/../../_include.php';
