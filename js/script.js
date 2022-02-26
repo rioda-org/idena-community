@@ -45,50 +45,26 @@ function getEpoch() {
     return axios.get('https://api.idena.org/api/epoch/last').then(response => response.data["result"].epoch)
 }
 
-
 function sendRawTx(signedRawTx) {
     return axios.post('https://test.idena.site', {"method":"bcn_sendRawTx","params":[signedRawTx],"id":1,"key":"test"}).then(response => response.data.result);
 }
 
-
-async function getNonceEpoch(){
-	if (document.getElementById('addy').value.length == 42) {
-		let addy = document.getElementById('addy').value;
-		let nonce = await getNonce(addy);
-		let epoch = await getEpoch();
-		nonce++;
-		document.getElementById('nonce').value = nonce;
-		document.getElementById('epoch').value = epoch;
-		toastr.success('Nonce: '+nonce+'\nEpoch: '+epoch);
-} else {
-    toastr.error('Please login first.');
-  }
-}
-
-//encode rawTX
-function encodeRawTx() {
+function encodeAndSignRawTxDeplMltsg() {
 	if (document.getElementById('nonce').value == "") {
-	toastr.error("Please don't skip steps.");
+	toastr.error("Error encoding rawTx.");
 	} else {
-	  Window.Wblock3();
-	  toastr.success('RawTx: '+ document.getElementById('rawTx').value);
+		//encode it
+		Window.encodeRawTxDeployMultisig();
+		//sign it
+		Window.signRawTx();
   }
 }
 
-//sign rawTX
-function signRawTx() {
-	if (document.getElementById('rawTx').value == "") {
-	toastr.error("Please don't skip steps.");
-	} else {
-  Window.Wblock5();
-  toastr.success('Signed RawTx: '+ document.getElementById('signedRawTx').value);
-	}
-}
 
-//send transaction to delete invitation
-async function deleteInvitation() {
+async function createWallet() {
+	encodeAndSignRawTxDeplMltsg();
 	if (document.getElementById('signedRawTx').value == "") {
-	toastr.error("Please don't skip steps.");
+	toastr.error("Error creating wallet.");
 	} else {
 		let signedRawTx = document.getElementById('signedRawTx').value;
 		let tx = await sendRawTx(signedRawTx);

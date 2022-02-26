@@ -6,10 +6,10 @@ $conn=mysqli_connect($host,$dbuser,$dbpass,$db);
 if (mysqli_connect_errno())  { echo "Failed to connect to MySQL: ".mysqli_connect_error(); }
 mysqli_set_charset($conn,"utf8");
 
-//check login
-if(isset($_GET["token"])){
-	$token=$_GET["token"];
-	$res=mysqli_query($conn, "SELECT address FROM auth WHERE token='{$token}' AND auth_success='1'");
+//check remember_auth cookie
+if(isset($_COOKIE['remember_auth'])){
+	$remember_auth_token=$_COOKIE['remember_auth'];
+	$res=mysqli_query($conn, "SELECT address FROM auth WHERE token='{$remember_auth_token}' AND auth_success='1'");
 	$numrows=mysqli_num_rows($res); $res or die ("Unable to execute query.");
 
 	if($numrows==1){
@@ -20,15 +20,15 @@ if(isset($_GET["token"])){
 		$resD=mysqli_query($conn, "SELECT * FROM delegatee WHERE address='{$address}' AND active='1'");
 		$numrowsD=mysqli_num_rows($resD);
 		if($numrowsD==1){
-		$_SESSION["delegatee"]="yes";
-			while($rowD=mysqli_fetch_object($resD)) {
-			$_SESSION["nickname"]=$rowD->nickname;
+			$_SESSION["delegatee"]="yes";
+				while($rowD=mysqli_fetch_object($resD)) {
+				$_SESSION["nickname"]=$rowD->nickname;
+				}
 			}
-		}
-		header("location:{$url}");
 		}
 	}
 }
+
 
 //read data
 $res=mysqli_query($conn, "SELECT * FROM round ORDER BY idround ASC LIMIT 1");

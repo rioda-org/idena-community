@@ -33,7 +33,7 @@ CREATE TABLE `auth` (
   `auth_time` datetime DEFAULT NULL,
   `auth_success` varchar(1) DEFAULT NULL,
   PRIMARY KEY (`idauth`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 
@@ -52,7 +52,7 @@ CREATE TABLE `delegatee` (
   `contact` varchar(45) DEFAULT NULL,
   `active` varchar(1) DEFAULT '1',
   PRIMARY KEY (`iddelegatee`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 
@@ -70,7 +70,7 @@ CREATE TABLE `delegatee_stats` (
   `delegatee` varchar(42) DEFAULT NULL,
   `time` datetime DEFAULT NULL,
   PRIMARY KEY (`iddelegatee_stats`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 
@@ -86,7 +86,7 @@ CREATE TABLE `round` (
   `idround` int(11) NOT NULL AUTO_INCREMENT,
   `start_epoch` varchar(5) DEFAULT NULL,
   PRIMARY KEY (`idround`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

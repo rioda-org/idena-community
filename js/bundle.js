@@ -27966,16 +27966,15 @@ Window.Wblock2 = function () {
 
 
 //encode raw tx
-Window.Wblock3 = function () {
+Window.encodeRawTxDeployMultisig = function () {
     let nonce = document.getElementById('nonce').value;
     let epoch = document.getElementById('epoch').value;
-	//kill invite is type 10
-    let type = 10;
-    let to = document.getElementById('to-addy').value;
-    let amount = 0;
+    let type = 15;
+    let to = "";
+    let amount = 4;
     let maxfee = 1;
     let tips = 0;
-    let payload = "";
+    let payload = new Uint8Array([10,1,5,18,1,5,18,1,3]);
     let signature = "";
     const tx = new Transaction(
         nonce,
@@ -27986,10 +27985,11 @@ Window.Wblock3 = function () {
         maxfee * 10 ** 18,
         tips * 10 ** 18,
         payload,
-        signature
+		signature
     );
     document.getElementById('rawTx').value = '0x' + tx.toHex();
 }
+
 
 
 //decode raw tx
@@ -28014,7 +28014,7 @@ Window.Wblock4 = function () {
 }
 
 //signing rawTX
-Window.Wblock5 = function () {
+Window.signRawTx = function () {
     let rawTx = document.getElementById('rawTx').value;
     let PK = document.getElementById('unencryptedPK').value;
     document.getElementById('signedRawTx').value = '0x' + new Transaction().fromHex(rawTx).sign(PK).toHex();
@@ -53001,22 +53001,19 @@ exports.decryptPrivateKey = function (data, passphrase) {
 }
 
 
-
-
-
 exports.Transaction = class {
-  constructor(nonce, epoch, type, amount, maxFee, tips, payload, signature) {
+  constructor(nonce, epoch, type, to, amount, maxFee, tips, payload, signature) {
     this.nonce = nonce || 0;
     this.epoch = epoch || 0;
     this.type = type || 0;
+	this.to = to;
     this.amount = amount || 0;
     this.maxFee = maxFee || 0;
     this.tips = tips || 0;
-    this.payload = payload || '0x';
-    this.signature = signature || null;
+    this.payload = payload;
+    this.signature = null;
   }
   
-//{"nonce":7,"epoch":80,"type":15,"codeHash":"0x05","amount":4000000000000000000,"maxFee":1000000000000000000,"args":[{"index":0,"format":"byte","value":"5"},{"index":1,"format":"byte","value":"3"}]}
   
   
   toJson() {

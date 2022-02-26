@@ -12,13 +12,14 @@ $now=date('Y-m-d H:i:s');
 <h5>Wallets
 <?php 
 if(isset($_SESSION["delegatee"])) {
-	echo '<a href="#" data-toggle="modal" data-target="#signInWallet" class="ml-3" title="Sign in" id="signInLink"><i class="fas fa-sign-in-alt"></i> Sign in</a>';
+	echo '<a href="#" data-toggle="modal" data-target="#signInWallet" class="ml-3" title="Sign in" id="signInLink">
+	<i class="fas fa-sign-in-alt"></i> Sign in</a>';
 	
 	//do we have wallet for current round?
 	$res=mysqli_query($conn, "SELECT * FROM wallet WHERE round='{$round}'");
 	$numrows=mysqli_num_rows($res);
 	if($numrows==0)
-	echo '<a href="#" data-toggle="modal" data-target="#createWallet" class="ml-3 d-none" title="Create wallet" id="createWalletLink"><i class="fas fa-wallet"></i> Create wallet</a>';
+	echo '<a href="#" class="ml-3 d-none" title="Create wallet" onclick="createWallet()" id="createWalletLink"><i class="fas fa-wallet"></i> Create wallet</a>';
 	
 echo <<<EOT
 <!-- Modal sign in for wallet -->

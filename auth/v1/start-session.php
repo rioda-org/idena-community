@@ -27,7 +27,6 @@ if($error==0){
 	//agent, if idena=DesktopApp, if axios=WebApp
 	mysqli_query($conn, "INSERT INTO auth (token,address,nonce,ip_address,start_auth,agent)
 VALUES ('{$token}','{$address}','{$nonce}','{$ip_address}','{$start_auth}','{$agent}')");
-
 echo '{"success":true,"data":{"nonce":"'.$nonce.'"}}';
 }
 else
