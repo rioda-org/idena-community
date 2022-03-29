@@ -93,7 +93,7 @@ while($row=mysqli_fetch_object($res)) {
 	if($active=="1") $active="checked"; else $active="";
 		
 echo "<tr>
-        <td><img src='https://robohash.org/{$address}' width='32px' height='32px' title='{$bio}'></td>
+        <td><img src='https://robohash.org/{$address}' width='32px' height='32px' title='{$bio}' class='img-circle border rounded-circle'></td>
         <td><a href='https://scan.idena.io/address/{$address}' target='_blank'>{$address}</a></td>
         <td title='{$bio}'>{$nickname}</td><td>";
 		

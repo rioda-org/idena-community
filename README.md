@@ -14,13 +14,16 @@ https://ubiubi2018.medium.com/proposal-for-governance-mechanism-for-idena-commun
 `sudo systemctl restart apache2.service`
 * install php dependencies
 `php composer.phar update`
-
+* import database structure from
+`import.sql`
 
 ### You need to add `_config.php` file
 ```php
 <?php
 $url="https://community.idena.site";
-$idena_domain="idena.org";
+$idena_api="https://api.idena.org";
+$rpc_url="https://test.idena.site";
+$rpc_key="test";
 
 //MySQL database parameters
 $host="localhost";
@@ -29,3 +32,12 @@ $dbpass="";
 $db="community";
 ?>
 ```
+
+## Functionalities
+* Anyone is able to authenticate his Idena account (Sign in with Idena). By default authentication is remembered for 60 days.
+* Delegatees page
+  - Everyone: Can view active delegatees and their information, Idena address, nickname, bio, contact info and historical changes for their delegatee status.
+  - Active delegatee: Additionaly can add new delegatees, change other delegatees status (active or not). Each delegatee can edit it's info (bio, contact, nickname)
+* Wallet page
+  - Everyone: Can view wallets history.
+  - Active delegatee: Can use Sign in option to manage community wallet.

@@ -1,4 +1,3 @@
 _config.php
 /vendor
 composer.lock
-auth.sql

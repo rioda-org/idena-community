@@ -27949,7 +27949,6 @@ function toHexString(byteArray) {
     }).join('')
 }
 Window.Wblock1 = function () {
-
     let pk = document.getElementById('block1-pk').value;
     let pass = document.getElementById('block1-pass').value;
     document.getElementById('block1Output1').value = encryptPrivateKey(pk, pass);
@@ -27957,18 +27956,18 @@ Window.Wblock1 = function () {
 
 
 //decrypt priv key and get addy
-Window.Wblock2 = function () {
-    let pk = document.getElementById('block2-pk').value;
-    let pass = document.getElementById('block2-pass').value;
-	document.getElementById('unencryptedPK').value = decryptPrivateKey(pk, pass);
-	document.getElementById('addy').value = privateKeyToAddress(decryptPrivateKey(pk, pass));
+Window.decryptAndAddress = function () {
+    let epk = document.getElementById('encrypted_private_key').value;
+    let pass = document.getElementById('password').value;
+	sessionStorage.private_key = decryptPrivateKey(epk, pass);
+	sessionStorage.address = privateKeyToAddress(decryptPrivateKey(epk, pass));
 }
 
 
 //encode raw tx
 Window.encodeRawTxDeployMultisig = function () {
-    let nonce = document.getElementById('nonce').value;
-    let epoch = document.getElementById('epoch').value;
+    let nonce = sessionStorage.getItem("nonce");
+    let epoch = sessionStorage.getItem("epoch");
     let type = 15;
     let to = "";
     let amount = 4;
@@ -27987,37 +27986,15 @@ Window.encodeRawTxDeployMultisig = function () {
         payload,
 		signature
     );
-    document.getElementById('rawTx').value = '0x' + tx.toHex();
+    sessionStorage.rawTx = '0x' + tx.toHex();
 }
 
-
-
-//decode raw tx
-Window.Wblock4 = function () {
-
-    alert(new Transaction().fromHex(document.getElementById('block4Input').value).toJson());
-    let tx = JSON.parse(new Transaction().fromHex(document.getElementById('block4Input').value).toJson());
-    document.getElementById('block4-nonce').value = tx.nonce;
-    document.getElementById('block4-epoch').value = tx.epoch;
-    document.getElementById('block4-type').value = tx.type;
-    document.getElementById('block4-maxFee').value = (tx.maxFee / 1000000000000000000);
-    document.getElementById('block4-to').value = tx.to;
-    document.getElementById('block4-amount').value = (tx.amount / 1000000000000000000);
-    document.getElementById('block4-tips').value = tx.tips;
-    document.getElementById('block4-payload').value = toHexString(Object.keys(tx.payload).map(function (key) {
-        return tx.payload[key];
-    }));;
-    document.getElementById('block4-signature').value = toHexString(Object.keys(tx.signature).map(function (key) {
-        return tx.signature[key];
-    }));;
-
-}
 
 //signing rawTX
 Window.signRawTx = function () {
-    let rawTx = document.getElementById('rawTx').value;
-    let PK = document.getElementById('unencryptedPK').value;
-    document.getElementById('signedRawTx').value = '0x' + new Transaction().fromHex(rawTx).sign(PK).toHex();
+    let rawTx = sessionStorage.getItem("rawTx");
+    let PK = sessionStorage.getItem("private_key");
+    sessionStorage.signedRawTx = '0x' + new Transaction().fromHex(rawTx).sign(PK).toHex();
 }
 
 Window.Wblock6 = function () {
