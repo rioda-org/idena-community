@@ -41,3 +41,13 @@ $db="community";
 * Wallet page
   - Everyone: Can view wallets history.
   - Active delegatee: Can use Sign in option to manage community wallet.
+  
+## To do
+* Wallet page
+  - Can't really remember where I'm at here. UbiUbi's proposal need to be read to understand what is needed.
+  - Sign in with idena is one thing, for every user and delegatee options. For wallet, there is need for additional sign in as you would do in web app. It is needed so that app can use private key to do actions with wallet.
+  - The point was, there is pool of delegatees. Funding rounds change automatically every 3 epoch. After each round new delegatees are chosen by some random thing(not figured out how), from delegatee pool on Delegatees page. After delegatees are enabled/disabled for new round, new wallet(multisig smart contract) needs to be created and fundus moved from last wallet. New delegatees must be added as wallet operators. So the history of past rounds wallets and its delegatees must be kept in DB, as well as rounds.
+  - Opearators need to have option to vote for spending idna from wallet
+* Proposal page
+  - User that is signed in with Idena auth, can open new proposal. On that proposal, others also only signed in, can post comments in reddit style with upvote/downvotes
+  - If proposal gains traction, oracle is made to decide if proposal should be funded. Delegatees vote on the wallet page to send funds if oracle is succesfull.
